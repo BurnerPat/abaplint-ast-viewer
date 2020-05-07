@@ -10,7 +10,10 @@ import Split from "split-grid";
 
 import "./style.less";
 
+const nodeHtmlLabel = require("cytoscape-node-html-label");
+
 cytoscape.use(dagre);
+nodeHtmlLabel(cytoscape);
 
 const registry = new abaplint.Registry(new abaplint.Config(JSON.stringify({
     global: {
@@ -131,9 +134,8 @@ function buildTree(node: INode, id: any = {number: 1}, parentId: string = null):
         {
             data: {
                 id: nodeId,
-                label: node instanceof TokenNode ? node.getFirstToken().getStr() : node.get().constructor.name,
-                color: nodeColors[node.constructor.name] || "lightgrey",
-                font: node instanceof TokenNode ? "monospace" : "sans-serif"
+                node: node,
+                color: nodeColors[node.constructor.name] || "lightgrey"
             }
         }
     ];
@@ -199,7 +201,6 @@ function update() {
                     {
                         selector: "node",
                         style: {
-                            "label": "data(label)",
                             "background-color": "data(color)",
                             "border-width": "2",
                             "border-style": "solid",
@@ -214,6 +215,21 @@ function update() {
                     }
                 ]
             });
+
+            cy.nodeHtmlLabel([{
+                query: "node",
+                halign: "center",
+                valign: "center",
+                halignBox: "center",
+                valignBox: "center",
+                tpl: data => {
+                    const node = data.node;
+                    return `<div class="node-label ${node instanceof TokenNode ? "token" : ""}">
+                                <div class="main">${node instanceof TokenNode ? node.getFirstToken().getStr() : node.get().constructor.name}</div>
+                                <div class="sub">${node.constructor.name}</div>
+                            </div>`;
+                }
+            }]);
         }
         else {
             cy.json({
