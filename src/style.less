@@ -1,45 +1,43 @@
 body, html {
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 #horizon {
-  display: grid;
-  grid-template-columns: 1fr 5px 2fr;
-  grid-template-rows: auto 1fr;
+    display: grid;
+    grid-template-columns: 1fr 5px 2fr;
+    grid-template-rows: auto 1fr;
 
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  right: 5px;
-  bottom: 5px;
+    width: 100%;
+    height: 100%;
 
-  .container {
-    overflow: hidden;
-  }
-
-  #gutter {
-    grid-area: ~"1 / 2 / 3 / 2";
-    cursor: col-resize;
-  }
-
-  #options {
-    grid-area: ~"1 / 1 / 1 / 1";
-    padding: 5px;
-
-    * {
-      font-family: sans-serif;
+    .container {
+        overflow: hidden;
     }
-  }
 
-  #editor {
-    grid-area: ~"2 / 1 / 3 / 1";
-  }
+    #gutter {
+        grid-area: ~"1 / 2 / 3 / 2";
+        background-color: darkgray;
+        cursor: col-resize;
+    }
 
-  #diagram {
-    grid-area: ~"1 / 3 / 3 / 3";
-  }
+    #options {
+        grid-area: ~"1 / 1 / 1 / 1";
+        padding: 5px;
+
+        * {
+            font-family: sans-serif;
+        }
+    }
+
+    #editor {
+        grid-area: ~"2 / 1 / 3 / 1";
+    }
+
+    #diagram {
+        grid-area: ~"1 / 3 / 3 / 3";
+    }
 }
 
 .node-label {
