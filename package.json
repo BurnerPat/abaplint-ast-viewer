@@ -1,0 +1,33 @@
+{
+  "name": "abaplint-ast-viewer",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@abaplint/core": "^2.32.10",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-loader": "^3.5.3",
+    "html-webpack-plugin": "^4.0.1",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
+    "raw-loader": "^4.0.0",
+    "style-loader": "^1.1.4",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "dependencies": {
+    "@abaplint/monaco": "^2.32.10",
+    "@types/cytoscape": "^3.14.0",
+    "cytoscape": "^3.14.2",
+    "cytoscape-dagre": "^2.2.2",
+    "file-loader": "^6.0.0",
+    "monaco-editor": "^0.20.0",
+    "split-grid": "^1.0.9"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production"
+  }
+}

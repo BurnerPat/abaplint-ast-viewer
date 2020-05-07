@@ -1,0 +1,26 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+#horizon {
+  display: grid;
+  grid-template-columns: 1fr 5px 2fr;
+  grid-template-rows: 1fr;
+
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+
+  .container {
+    overflow: hidden;
+  }
+
+  #gutter {
+    grid-area: ~"1 / 2 / 1 / 2";
+    cursor: col-resize;
+  }
+}
