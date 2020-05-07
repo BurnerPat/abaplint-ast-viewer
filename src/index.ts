@@ -94,7 +94,22 @@ observer.observe(document.getElementById("horizon"), {
 
 window.addEventListener("resize", () => editor.layout());
 
+const versionSelect: HTMLSelectElement = document.getElementById("syntax-version") as HTMLSelectElement;
+
+for (const v of Object.keys(Version)) {
+    const opt = document.createElement("option");
+    opt.textContent = Version[v];
+    opt.value = v;
+    versionSelect.appendChild(opt);
+
+    if (Version[v] === Version.v750) {
+        versionSelect.selectedIndex = opt.index;
+    }
+}
+
 let cy;
+
+versionSelect.onchange = update;
 
 editor.onDidChangeModelContent(update);
 update();
@@ -149,6 +164,10 @@ function update() {
     try {
         const contents = editor.getValue();
         const file = new abaplint.MemoryFile(filename, contents);
+
+        const config = registry.getConfig();
+        config.getSyntaxSetttings().version = versionSelect.selectedOptions[0].value as Version;
+
         registry.updateFile(file);
         registry.parse();
 
