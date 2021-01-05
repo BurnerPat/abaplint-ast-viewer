@@ -175,7 +175,7 @@ function update() {
 
         abapMonaco.updateMarkers(registry, model);
 
-        const obj: ABAPObject = registry.getObjects()[0] as ABAPObject;
+        const obj: ABAPObject = registry.getFirstObject() as ABAPObject;
         new SyntaxLogic(registry, obj).run();
 
         const abapFile = obj.getABAPFiles()[0];
